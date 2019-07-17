@@ -24,7 +24,7 @@
                         @csrf
                         
                         {{-- input coverletter --}}
-                        <div class="form-group row pb-5 pt-5">
+                        <div class="form-group row pb-1 pt-5">
                             <label for="coverletter" class="col-md-2 col-form-label text-md-left offset-md-1"><h5>{{ __('Cover Letter') }}:</h5></label>
 
                             <div class="col-md-10 offset-md-1">
@@ -40,7 +40,7 @@
                         </div>
 
                         {{-- input title --}}
-                        <div class="form-group row pb-5">
+                        <div class="form-group row pb-1">
                             <label for="title" class="col-md-2 col-form-label text-md-left offset-md-1"><h5>{{ __('Title') }}:</h5></label>
 
                             <div class="col-md-10 offset-md-1">
@@ -55,7 +55,7 @@
                         </div>
 
                         {{-- input abstract --}}
-                        <div class="form-group row pb-5">
+                        <div class="form-group row pb-1">
                             <label for="abstract" class="col-md-2 col-form-label text-md-left offset-md-1"><h5>{{ __('Abstract') }}:</h5></label>
 
                             <div class="col-md-10 offset-md-1">
@@ -70,7 +70,7 @@
                         </div>
 
                         {{-- input keywords --}}
-                        <div class="form-group row pb-5">
+                        <div class="form-group row pb-1">
                             <label for="keywords"  class="col-md-2 col-form-label text-md-left offset-md-1"><h5>{{ __('Keywords') }}:</h5></label>
 
                             <div class="col-md-10 offset-md-1">
@@ -85,7 +85,7 @@
                         </div>
 
                         {{-- input comment --}}
-                        <div class="form-group row pb-5">
+                        <div class="form-group row pb-1">
                             <label for="comment" class="col-md-2 col-form-label text-md-left offset-md-1"><h5>{{ __('Comments') }}:</h5></label>
 
                             <div class="col-md-10 offset-md-1">
@@ -100,7 +100,7 @@
                         </div>
 
                         {{-- input upload files --}}
-                        <div class="form-group row pb-5">
+                        <div class="form-group row pb-1">
                             <label for="docfiles" class="col-md-2 col-form-label text-md-left offset-md-1"><h5>{{ __('Select files for upload') }}:</h5></label>
 
                             <div class="col-md-10 offset-md-1">

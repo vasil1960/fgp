@@ -55,15 +55,15 @@
                                     </tr>
                                 @endforeach
 
-                            </tbody>                           
+                            </tbody>
+
+                            <div class="container">
+                                <a href="{{route('manuscripts.create')}}" class="btn btn-sm btn-primary">Submit New Manuscript</a>
+                            </div>
                         @else
                             <p>No manuscripts</p>
                         @endif
                     </table>
-                    
-                    <div class="container">
-                        <a href="{{route('manuscripts.create')}}" class="btn btn-sm btn-primary">Submit New Manuscript</a>
-                    </div>
                 </div>
             </div>  
 
