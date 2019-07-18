@@ -19,7 +19,7 @@
                 
                 <div class="card-body">
 
-                    <form action="{{ route('manuscripts.store') }}" method="POST">
+                    <form action="{{ route('manuscripts.store') }}" method="POST" enctype="multipart/form-data" >
                        
                         @csrf
                         
@@ -28,7 +28,7 @@
                             <label for="coverletter" class="col-md-2 col-form-label text-md-left offset-md-1"><h5>{{ __('Cover Letter') }}:</h5></label>
 
                             <div class="col-md-10 offset-md-1">
-                                <textarea  rows="5" id="message" type="text"  class="form-control @error('coverletter') is-invalid @enderror" name="coverletter"   autocomplete="coverletter" autofocus>{{ old('coverletter') }}</textarea>
+                                <textarea  rows="5" id="coverletter" type="text"  class="form-control @error('coverletter') is-invalid @enderror" name="coverletter"   autocomplete="coverletter" autofocus>{{ old('coverletter') }}</textarea>
 
                                 @error('coverletter')
                                     <span class="invalid-feedback" role="alert">
@@ -44,7 +44,7 @@
                             <label for="title" class="col-md-2 col-form-label text-md-left offset-md-1"><h5>{{ __('Title') }}:</h5></label>
 
                             <div class="col-md-10 offset-md-1">
-                                <textarea rows="5" id="message" type="text"  class="form-control @error('title') is-invalid @enderror" name="title"   autocomplete="title" autofocus>{{ old('title') }}</textarea>
+                                <textarea rows="5" id="title" type="text"  class="form-control @error('title') is-invalid @enderror" name="title"   autocomplete="title" autofocus>{{ old('title') }}</textarea>
 
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
@@ -59,7 +59,7 @@
                             <label for="abstract" class="col-md-2 col-form-label text-md-left offset-md-1"><h5>{{ __('Abstract') }}:</h5></label>
 
                             <div class="col-md-10 offset-md-1">
-                                <textarea rows="5" id="message" type="text"  class="form-control @error('abstract') is-invalid @enderror" name="abstract"   autocomplete="abstract" autofocus>{{ old('abstract') }}</textarea>
+                                <textarea rows="5" id="abstract" type="text"  class="form-control @error('abstract') is-invalid @enderror" name="abstract"   autocomplete="abstract" autofocus>{{ old('abstract') }}</textarea>
 
                                 @error('abstract')
                                     <span class="invalid-feedback" role="alert">
@@ -74,7 +74,7 @@
                             <label for="keywords"  class="col-md-2 col-form-label text-md-left offset-md-1"><h5>{{ __('Keywords') }}:</h5></label>
 
                             <div class="col-md-10 offset-md-1">
-                                <textarea rows="5" id="message" type="text"  class="form-control @error('keywords') is-invalid @enderror" name="keywords"   autocomplete="keywords" autofocus>{{ old('keywords') }}</textarea>
+                                <textarea rows="5" id="keywords" type="text"  class="form-control @error('keywords') is-invalid @enderror" name="keywords"   autocomplete="keywords" autofocus>{{ old('keywords') }}</textarea>
 
                                 @error('keywords')
                                     <span class="invalid-feedback" role="alert">
@@ -89,7 +89,7 @@
                             <label for="comment" class="col-md-2 col-form-label text-md-left offset-md-1"><h5>{{ __('Comments') }}:</h5></label>
 
                             <div class="col-md-10 offset-md-1">
-                                <textarea  rows="5" id="message" type="text" class="form-control @error('comment') is-invalid @enderror" name="comment"   autocomplete="comment" autofocus>{{ old('comment') }}</textarea>
+                                <textarea  rows="5" id="comment" type="text" class="form-control @error('comment') is-invalid @enderror" name="comment"   autocomplete="comment" autofocus>{{ old('comment') }}</textarea>
 
                                 @error('comment')
                                     <span class="invalid-feedback" role="alert">
@@ -101,10 +101,10 @@
 
                         {{-- input upload files --}}
                         <div class="form-group row pb-1 ">
-                            <label for="docfiles" class="col-md-2 col-form-label text-md-left offset-md-1"><h5>{{ __('Select files for upload') }}:</h5></label>
+                            <label for="docfiles" class="col-md-3 col-form-label text-md-left offset-md-1"><h5>{{ __('Select files for upload') }}:</h5></label>
 
                             <div class="col-md-10 offset-md-1">
-                                <input rows="5" id="message" type="file" class="form-control @error('docfiles') is-invalid @enderror" name="docfiles"   autocomplete="docfiles" autofocus>
+                                <input id="docfiles" type="file" class="form-control @error('docfiles') is-invalid @enderror" name="docfiles"   autocomplete="docfiles" autofocus>
 
                                 @error('docfiles')
                                     <span class="invalid-feedback" role="alert">

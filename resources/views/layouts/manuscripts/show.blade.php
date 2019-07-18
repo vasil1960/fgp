@@ -44,6 +44,11 @@
                     <hr>
                 </div>
 
+                <div class="container">
+                    <a class="btn btn-primary" href="{{ asset('storage/docs/'.auth()->user()->id.'/'.$manuscript->docfiles) }}">Download Manuscript</a>
+
+                </div>
+
                 </div>
             </div>
         </div>

@@ -29,7 +29,7 @@ class StoreManuscriptPost extends FormRequest
             'abstract'    => 'required',
             'keywords'    => 'required',
             // 'comment'     => 'required',
-            'docfiles'    => 'required'
+            'docfiles'    => 'nullable|mimes:doc,txt|max:1999'
         ];
     }
 }

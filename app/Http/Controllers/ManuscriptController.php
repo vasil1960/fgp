@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 
 use App\Manuscript;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Session;
-use PDO;
 use App\Http\Requests\StoreManuscriptPost;
 use App\Mail\PostNewManuscript;
 
@@ -43,6 +43,18 @@ class ManuscriptController extends Controller
      */
     public function store(StoreManuscriptPost $request)
     {
+        if($request->hasFile('docfiles'))
+        {
+            $fileNameWhitExt = $request->file('docfiles')->getClientOriginalName();
+            setlocale(LC_ALL,'C.UTF-8');
+            $filename = pathinfo($fileNameWhitExt, PATHINFO_FILENAME);
+            $extension = $request->file('docfiles')->getClientOriginalExtension();
+            $fileNameToStore = 'FGP_authId_'.auth()->user()->id.'_'.$filename.'_'.date('d.m.Y').'.'.$extension;
+            $path = $request->file('docfiles')->storeAs('/public/docs/'.auth()->user()->id.'/', $fileNameToStore);
+        } else {
+            $fileNameToStore = 'FGP_blank.doc';
+        }
+
         $manuscript = new Manuscript;
 
         $manuscript->coverletter = $request->coverletter;
@@ -50,19 +62,17 @@ class ManuscriptController extends Controller
         $manuscript->abstract    = $request->abstract;
         $manuscript->keywords    = $request->keywords;
         $manuscript->comment     = $request->comment;
-        $manuscript->docfiles    = $request->docfiles;
+        $manuscript->docfiles    = $fileNameToStore;
         $manuscript->user_id     = auth()->user()->id;
         
         $manuscript->save();
-        
-        // auth()->user()->manuscript()->create($request->all());
 
         \Mail::to('v.tsigov@gmail.com')->send( new PostNewManuscript($request));
         
         session()->flash('success', 'Thanks for post your manuscript!');
         
-        // Return to all manuscripts 
-        return redirect()->route('manuscripts.index');
+        // Return to last insert id manuscript
+        return redirect()->route('manuscripts.show', $manuscript->id);
     }
 
     /**
@@ -97,7 +107,17 @@ class ManuscriptController extends Controller
      */
     public function update(StoreManuscriptPost $request, $id)
     {
-        
+        if($request->hasFile('docfiles'))
+        {
+            $fileNameWhitExt = $request->file('docfiles')->getClientOriginalName();
+            setlocale(LC_ALL,'C.UTF-8');
+            $filename = pathinfo($fileNameWhitExt, PATHINFO_FILENAME);
+            $extension = $request->file('docfiles')->getClientOriginalExtension();
+            $fileNameToStore = 'FGP_authId_'.auth()->user()->id.'_'.$filename.'_'.date('d.m.Y').'.'.$extension;
+            $path = $request->file('docfiles')->storeAs('/public/docs/'.auth()->user()->id.'/', $fileNameToStore);
+        }
+
+
         $manuscript = Manuscript::findOrFail($id);
 
         $manuscript->coverletter = $request->coverletter;
@@ -105,7 +125,10 @@ class ManuscriptController extends Controller
         $manuscript->abstract    = $request->abstract;
         $manuscript->keywords    = $request->keywords;
         $manuscript->comment     = $request->comment;
-        $manuscript->docfiles    = $request->docfiles;
+        if($request->hasFile('docfiles'))
+        {
+            $request->docfiles = $fileNameToStore;
+        }
         $manuscript->user_id     = auth()->user()->id;
         
         $manuscript->save();
@@ -129,6 +152,11 @@ class ManuscriptController extends Controller
         $manuscript = Manuscript::findOrFail($manuscript->id);
 
         $manuscript->delete();
+
+        if($manuscript->docfiles !== 'FGP_blank.doc')
+        {
+            Storage::delete( asset('storage/docs/'.auth()->user()->id.'/'.$manuscript->docfiles));
+        }
         
         return redirect(route('manuscripts.index'))->with('success','Thanks for delete your manuscript!');
     }
