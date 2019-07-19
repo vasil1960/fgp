@@ -149,6 +149,8 @@ class ManuscriptController extends Controller
      */
     public function destroy(Manuscript $manuscript)
     {
+
+
         $manuscript = Manuscript::findOrFail($manuscript->id);
 
         $manuscript->delete();
