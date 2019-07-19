@@ -28,7 +28,7 @@ class StoreManuscriptPost extends FormRequest
             'title'       => 'required',
             'abstract'    => 'required',
             'keywords'    => 'required',
-            // 'comment'     => 'required',
+//            'comment'     => 'required',
             'docfiles'    => 'required|mimes:doc,docx,zip|max:1999'
         ];
     }

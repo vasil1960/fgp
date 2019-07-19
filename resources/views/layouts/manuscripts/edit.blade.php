@@ -19,7 +19,7 @@
                 
                 <div class="card-body">
 
-                    <form action="{{ route('manuscripts.update',['id'=>$manuscript->id]) }}" method="POST">
+                    <form action="{{ route('manuscripts.update',['id'=>$manuscript->id]) }}" method="POST" enctype="multipart/form-data">
                        
                        
                         @method('PATCH')
@@ -106,7 +106,7 @@
                             <label for="docfiles" class="col-md-2 col-form-label text-md-left offset-md-1"><h5>{{ __('Select files for upload') }}:</h5></label>
 
                             <div class="col-md-10 offset-md-1">
-                                <input rows="5" id="message" type="file" value="{{ $manuscript->docfiles }}" class="form-control @error('docfiles') is-invalid @enderror" name="docfiles"   autocomplete="docfiles" autofocus>
+                                <input rows="5" id="message" type="file"  value="{{ $manuscript->docfiles }}" class="form-control @error('docfiles') is-invalid @enderror" name="docfiles"   autocomplete="docfiles" autofocus>
 
                                 @error('docfiles')
                                     <span class="invalid-feedback" role="alert">
