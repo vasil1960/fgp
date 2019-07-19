@@ -105,8 +105,17 @@ class ManuscriptController extends Controller
      * @param  \App\Manuscript  $manuscript
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreManuscriptPost $request, $id)
+    public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'coverletter' => 'required',
+            'title'       => 'required',
+            'abstract'    => 'required',
+            'keywords'    => 'required',
+            // 'comment'     => 'required',
+            'docfiles'    => 'requered|nullable|mimes:doc,docx,zip|max:1999'
+        ]);
+
         if($request->hasFile('docfiles'))
         {
             $fileNameWhitExt = $request->file('docfiles')->getClientOriginalName();
@@ -147,15 +156,13 @@ class ManuscriptController extends Controller
      * @param  \App\Manuscript  $manuscript
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Manuscript $manuscript)
+    public function destroy($id)
     {
-
-
-        $manuscript = Manuscript::findOrFail($manuscript->id);
+        $manuscript = Manuscript::findOrFail($id);
 
         $manuscript->delete();
 
-        if($manuscript->docfiles !== 'FGP_blank.doc')
+        if($manuscript->docfiles != 'FGP_blank.doc')
         {
             Storage::delete( asset('storage/docs/'.auth()->user()->id.'/'.$manuscript->docfiles));
         }

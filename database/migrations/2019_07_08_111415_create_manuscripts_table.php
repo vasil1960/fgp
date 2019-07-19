@@ -20,7 +20,7 @@ class CreateManuscriptsTable extends Migration
             $table->mediumText('abstract');
             $table->mediumText('keywords');
             $table->mediumText('comment');
-            $table->bigInteger('user_id');
+            $table->bigInteger('user_id')->index();
             $table->text('docfiles');
             $table->timestamps();
         });
