@@ -1,10 +1,14 @@
 @component('mail::message')
 # Introduction {{ $request->title }}
 
-{{ $request->abstract }}
+<h3>Title:</h3>
+<p>{{ $request->title }}</p>
+<br>
+<h3>Abstract:</h3>
+<p>{{ $request->abstract }}</p>
 
-@component('mail::button', ['url' => '/manuscripts' ] )
-Button Text
+@component('mail::button', ['url' => 'http://fgp.klaro-bg.com/manuscripts' ] )
+Manuscript
 @endcomponent
 
 Thanks,<br>

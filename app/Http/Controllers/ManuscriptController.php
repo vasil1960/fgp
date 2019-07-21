@@ -67,7 +67,7 @@ class ManuscriptController extends Controller
         
         $manuscript->save();
 
-//        \Mail::to('v.tsigov@gmail.com')->send( new PostNewManuscript($request));
+       \Mail::to('v.tsigov@gmail.com')->send( new PostNewManuscript($request));
         
         session()->flash('success', 'Thanks for post your manuscript!');
         
